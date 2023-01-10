@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { PageWrapper } from './layouts';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Donation, Home, DonationList } from './pages';
+import { useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [donationsList, setDonationsList] = useState([])
+  // const [donations, setDonations] = useState()
+
+	return (
+		<Router>
+			<div className='app'>
+				<PageWrapper>
+					<Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/donation' element={<Donation />} />
+          <Route path='/donationList' element={<DonationList setDonationsList={setDonationsList} donationsList={donationsList} />} />
+					</Routes>
+				</PageWrapper>
+			</div>
+		</Router>
+	);
 }
 
 export default App;
